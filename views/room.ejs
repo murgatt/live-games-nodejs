@@ -1,0 +1,72 @@
+<% include structure/head %>
+        
+        <div class="content roomContent">
+            <h1>Welcome in room "<%= room.name %>" !</h1>
+            <div class="howToJoin borderBlock">
+                <p>To join this room, enter the room ID on the home page : <span class="roomId"><%= room.id %></span></p>
+                <p class="qrCodeInfo">Or flash this QR code</p>
+                <div class="qrCode"></div>
+            </div>
+            
+            <% if(host) { %>
+            
+            <div class="games">
+                <h2>Games :</h2>
+                <ul>
+                    <li>
+                        <a href="game/tic-tac-toe/" class="game">Tic Tic Toe</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <% } else { %>
+            <div class="roomInfo">
+                <p>Waiting for the host...</p>
+            </div>
+            <% } %>
+            
+            <div class="roomActions">
+                <% if(host) { %>
+                <a href="/" id="exitRoom" class="btn">Leave the room</a>
+                <% } else { %>
+                <a href="/" id="leaveRoom" class="btn">Leave the room</a>
+                <% } %>
+            </div>
+        </div>
+
+        <script>
+        
+            socket = io.connect();
+            
+            var room = <%- JSON.stringify(room) %>;
+            socket.emit('join-room', room);
+            
+            socket.on('new-player', function(){
+               console.log('somone is connected !'); 
+            });
+            
+            socket.on('connected', function(){
+               console.log('You\'re connected !'); 
+            });
+            
+            socket.on('redirect', function(url){
+                window.location.href = url;
+            });
+            
+            socket.on('room-destroyed', function(url){
+                alert('The host has left the room');
+                window.location.href = '/';
+            });
+            
+            $('.game').click(function(){
+                var url = $(this).attr('href');
+                socket.emit('redirect', url);
+            });
+            
+            $('#exitRoom').click(function() {
+                socket.emit('destroy-room');
+            });
+        
+        </script>
+        
+<% include structure/foot %>

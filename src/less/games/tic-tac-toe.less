@@ -1,0 +1,64 @@
+@font-face {
+    font-family: kanji;
+    src: url(../fonts/Kanji_PA.ttf);
+}
+
+#tic-tac-toe {
+    
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    
+    .title {
+        margin: 30px 0;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    
+    table {
+        border-collapse: collapse;
+    }
+
+    table, td {
+        border: 1px solid black;
+    }
+    
+    .board {
+        
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        
+        .line {
+            .cell {
+                font-family: kanji;
+                width: 33.33%;
+                font-size: 150px;
+                text-align: center;
+                vertical-align: middle;
+                &.X {
+                    color: #e74c3a;
+                    text-shadow: 5px 0px #17b89a;
+                }
+                &.O {
+                    color: #17b89a;
+                    text-shadow: -5px 0px #e74c3a;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 725px) {
+    #tic-tac-toe {
+        .board {
+            .line {
+                .cell {
+                    font-size: 100px;
+                }
+            }
+        }
+    }
+}

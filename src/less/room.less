@@ -1,0 +1,67 @@
+.roomContent {
+    
+    .howToJoin {
+        padding: 12px 24px;
+        .roomId {
+            font-style: italic;
+        }
+    }
+    
+    .roomActions {
+        margin-top: 12px;
+        float: right;
+    }
+    
+    .games {
+        margin-top: 12px;
+        float: left;
+    }
+    
+    .roomInfo {
+        float: left;
+        margin-top: 12px;
+    }
+    
+    .qrCodeInfo {
+        margin: 0;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .qrCode {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 8px;
+    }
+    
+}
+
+@media screen and (max-width: 725px) {
+
+    .roomContent {
+
+        .roomActions {
+            text-align: center;
+            float: none;
+        }
+
+        .games {
+            float: none;
+        }
+
+        .roomInfo {
+            float: none;
+        }
+
+        .qrCodeInfo {
+            display: block;
+        }
+
+        .qrCode {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+        }
+    }
+
+}

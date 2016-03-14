@@ -1,0 +1,52 @@
+<% include structure/head %>
+
+    <div class="content homeContent">
+        <h1>Node Live Games</h1>
+
+        <div class="cols2 borderBlock">
+            <div class="createRoom col">
+                <a href="/newRoom/" class="btn">Create a new room game</a>
+            </div>
+
+            <div class="joinRoom col">
+                <h2>Join a room</h2>
+                <form action="/joinRoom/" method="post">
+                    <div class="field">
+                        <label for="roomId">Room ID :</label>
+                        <input type="text" placeholder="123456" name="roomId" id="roomId">
+                    </div>
+                    <input type="submit" value="Join room">
+                </form>
+            </div>
+        </div>
+
+        <div class="roomsList borderBlock">
+            <h2>Public rooms</h2>
+            <ul class="rooms">
+                <% for(var i = 0; i < publicRooms.length; i++) { %>
+                <li class="room" id="<%= publicRooms[i].id %>">
+                    <a href="/room/<%= publicRooms[i].id %>/">
+                        <%= publicRooms[i].name %>
+                    </a>
+                </li>
+                    <% } %>
+            </ul>
+        </div>
+
+    </div>
+    
+    <script>
+        
+        socket = io.connect();
+        
+        socket.on('new-room', function(room) {
+            $('.rooms').append('<li class="room" id="'+room.id+'"><a href="/room/'+room.id+'/">'+room.name+'</a></li>');
+        });
+        
+        socket.on('room-deleted', function(room) {
+            $('#' + room.id + '').remove();
+        });
+    
+    </script>
+
+<% include structure/foot %>

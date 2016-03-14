@@ -1,0 +1,44 @@
+<% include structure/head %>
+
+    <div class="content newRoomContent">
+        <form action="/createRoom/" method="post" class="borderBlock">
+            <div class="field textField">
+                <label for="roomName">Room name:</label>
+                <input type="text" name="name" id="roomName">
+            </div>
+
+<!--
+            <p class="formLegend">How do you want to play?</p>
+
+            <div class="field">
+                <div class="subField">
+                    <input type="radio" name="useBoard" value="1" id="useBoard">
+                    <label for="useBoard">With a game board (this device will be used as game board, you will need to connect with another device if you want to play)</label>
+                </div>
+
+                <div class="subField">
+                    <input type="radio" name="useBoard" value="0" id="noBoard">
+                    <label for="noBoard">Without game board (you will play on this device and the board will be visible on each player's device)</label>
+                </div>
+            </div>
+-->
+
+            <p class="formLegend">Choose the visibility of the room :</p>
+            <div class="field">
+                <div class="subField">
+                    <input type="radio" name="private" value="1" id="privateRoom">
+                    <label for="privateRoom">Private room</label>
+                </div>
+                <div class="subField">
+                    <input type="radio" name="private" value="0" id="publicRoom">
+                    <label for="publicRoom">Public room</label>
+                </div>
+            </div>
+
+            <div class="btnField">
+                <input type="submit" class="btn" value="Create room">
+            </div>
+        </form>
+    </div>
+
+    <% include structure/foot %>

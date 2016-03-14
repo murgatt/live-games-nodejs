@@ -1,0 +1,242 @@
+<% include ../../structure/head %>
+
+    <div id="tic-tac-toe" class="content gameContent">
+        <% include ../../structure/gameMenu %>
+        <div class="title">
+            <img src="/medias/images/tictactoe.png" alt="">
+        </div>
+        <table class="board">
+            <tr class="line">
+                <td class="cell"></td>
+                <td class="cell"></td>
+                <td class="cell"></td>
+            </tr>
+            <tr class="line">
+                <td class="cell"></td>
+                <td class="cell"></td>
+                <td class="cell"></td>
+            </tr>
+            <tr class="line">
+                <td class="cell"></td>
+                <td class="cell"></td>
+                <td class="cell"></td>
+            </tr>
+        </table>
+        <div class="pointsCounter">You : <span class="points">0</span></div>
+        <div class="opponentPoints">Opponent : <span class="points">0</span></div>
+    </div>
+
+    <script>
+        socket = io.connect();
+
+        var room = <%- JSON.stringify(room) %>;
+        var host = <%- JSON.stringify(host) %>;
+        socket.emit('join-room', room);
+
+        var turn = false;
+        var player;
+        var points = 0;
+        var opponentPoints = 0;
+
+        $('.cell').click(function () {
+            if (turn && $(this).attr('marked') != 'true') {
+                var x = $(this).parent().index();
+                var y = $(this).index();
+                $(this).html(player.symbol);
+                $(this).addClass(player.symbol);
+                $(this).attr('marked', 'true');
+                socket.emit('action', {
+                    x: x,
+                    y: y,
+                    symbol: player.symbol
+                });
+                turn = false;
+                if (gameWon()) {
+                    socket.emit('game-result', 'won');
+                    increasePoints();
+                    if (host) {
+                        if (confirm('You won ! Restart ?')) {
+                            initGame();
+                            socket.emit('init-game');
+                        } else {
+                            socket.emit('redirect', backToRoom());
+                        }
+                    } else {
+                        alert('You won !');
+                    }
+
+                } else if (gameDraw()) {
+                    socket.emit('game-result', 'draw');
+                    if (host) {
+                        if (confirm('Draw... Restart ?')) {
+                            initGame();
+                            socket.emit('init-game');
+                        } else {
+                            socket.emit('redirect', backToRoom());
+                        }
+                    } else {
+                        alert('Draw !');
+                    }
+                }
+            } else {
+                console.warn('not turn || cell checked');
+            }
+        });
+
+        socket.on('connected', function (playerObject) {
+            player = playerObject;
+            console.log(player);
+            switch (player.number) {
+            case 1:
+                player.symbol = 'X';
+                turn = true;
+                break;
+            case 2:
+                player.symbol = 'O';
+                turn = false;
+                break;
+            default:
+                console.warn('too much player');
+            }
+        });
+
+        socket.on('action', function (action) {
+            var cell = $('.line:eq(' + action.x + ') .cell:eq(' + action.y + ')');
+            cell.html(action.symbol);
+            cell.addClass(action.symbol);
+            cell.attr('marked', 'true');
+            turn = true;
+        });
+
+        socket.on('player-disconnected', function () {
+            alert('A player is disconnected');
+            backToRoom();
+        });
+
+        socket.on('init-game', function () {
+            initGame();
+        });
+
+        socket.on('game-result', function (result)  {
+            switch (result) {
+            case 'won':
+                increaseOpponentPoints();
+                if (host) {
+                    if (confirm('You loose ! Restart ?')) {
+                        initGame();
+                        socket.emit('init-game');
+                    } else {
+                        socket.emit('redirect', backToRoom());
+                    }
+                } else {
+                    alert('You loose !');
+                }
+                break;
+            case 'draw':
+                if (host) {
+                    if (confirm('Draw... Restart ?')) {
+                        initGame();
+                        socket.emit('init-game');
+                    } else {
+                        socket.emit('redirect', backToRoom());
+                    }
+                } else {
+                    alert('Draw...');
+                }
+                break;
+            }
+        });
+
+        socket.on('redirect', function (url) {
+            console.log('redirect');
+            window.location.href = url;
+        });
+
+        function initGame() {
+            var cells = $('.cell');
+            cells.empty();
+            cells.attr('marked', 'false');
+            cells.removeClass('X');
+            cells.removeClass('O');
+            switch (player.number) {
+            case 1:
+                turn = true;
+                break;
+            case 2:
+                turn = false;
+                break;
+            }
+        }
+
+        function gameWon() {
+
+            var line1 = $('.line:eq(0)');
+            var line2 = $('.line:eq(1)');
+            var line3 = $('.line:eq(2)');
+
+            var line1Won =
+                line1.children('.cell:eq(0)').html() == player.symbol &&
+                line1.children('.cell:eq(1)').html() == player.symbol &&
+                line1.children('.cell:eq(2)').html() == player.symbol;
+
+            var line2Won =
+                line2.children('.cell:eq(0)').html() == player.symbol &&
+                line2.children('.cell:eq(1)').html() == player.symbol &&
+                line2.children('.cell:eq(2)').html() == player.symbol;
+
+            var line3Won =
+                line3.children('.cell:eq(0)').html() == player.symbol &&
+                line3.children('.cell:eq(1)').html() == player.symbol &&
+                line3.children('.cell:eq(2)').html() == player.symbol;
+
+            var col1Won =
+                line1.children('.cell:eq(0)').html() == player.symbol &&
+                line2.children('.cell:eq(0)').html() == player.symbol &&
+                line3.children('.cell:eq(0)').html() == player.symbol;
+
+            var col2Won =
+                line1.children('.cell:eq(1)').html() == player.symbol &&
+                line2.children('.cell:eq(1)').html() == player.symbol &&
+                line3.children('.cell:eq(1)').html() == player.symbol;
+
+            var col3Won =
+                line1.children('.cell:eq(2)').html() == player.symbol &&
+                line2.children('.cell:eq(2)').html() == player.symbol &&
+                line3.children('.cell:eq(2)').html() == player.symbol;
+
+            var diag1Won =
+                line1.children('.cell:eq(0)').html() == player.symbol &&
+                line2.children('.cell:eq(1)').html() == player.symbol &&
+                line3.children('.cell:eq(2)').html() == player.symbol;
+
+            var diag2Won =
+                line1.children('.cell:eq(2)').html() == player.symbol &&
+                line2.children('.cell:eq(1)').html() == player.symbol &&
+                line3.children('.cell:eq(0)').html() == player.symbol;
+
+            return line1Won || line2Won || line3Won || col1Won || col2Won || col3Won || diag1Won || diag2Won;
+        }
+
+        function gameDraw() {
+            var cells = $('.cell');
+            var i = 0;
+            var draw = true;
+            while (i < cells.length && draw) {
+                draw = cells.eq(i).html() != "";
+                i++;
+            }
+            return draw;
+        }
+
+        function increasePoints() {
+            points++;
+            $('.pointsCounter .points').html(points);
+        }
+
+        function increaseOpponentPoints() {
+            opponentPoints++;
+            $('.opponentPoints .points').html(opponentPoints);
+        }
+    </script>
+
+    <% include ../../structure/foot %>

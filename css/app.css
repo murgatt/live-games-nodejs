@@ -1,0 +1,279 @@
+* {
+  font-family: "Museo Sans";
+  font-weight: 100;
+  font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+h1 {
+  font-size: 48px;
+  text-align: center;
+  margin: 34px;
+}
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 14px;
+}
+a {
+  color: black;
+}
+.btn,
+input[type="submit"] {
+  background-color: #3498db;
+  border: none;
+  border-bottom: 2px solid #2a8bcc;
+  box-shadow: inset 0 -2px #2a8bcc;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 0 22px;
+}
+.btn:hover,
+input[type="submit"]:hover {
+  background-color: #2a8bcc;
+  border-bottom: 2px solid #2077b2;
+  box-shadow: inset 0 -2px #2077b2;
+}
+input[type="text"] {
+  height: 40px;
+  font-size: 18px;
+  padding: 4px 8px;
+}
+.content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.borderBlock {
+  border: 1px solid #a9a9be;
+}
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo/MuseoSans-300.otf");
+  font-weight: normal, 300;
+}
+.homeContent h1 {
+  margin: 34px;
+  text-align: center;
+}
+.homeContent .cols2 {
+  padding: 24px 12px;
+  text-align: center;
+}
+.homeContent .cols2 .col {
+  width: 50%;
+  margin-right: -3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.homeContent .cols2 .joinRoom {
+  border-left: 1px solid #a9a9be;
+}
+.homeContent .cols2 .joinRoom h2 {
+  margin-bottom: 12px;
+}
+.homeContent .cols2 .joinRoom form .field {
+  margin-bottom: 12px;
+}
+.homeContent .cols2 .joinRoom form .field #roomId {
+  width: 70px;
+}
+.homeContent .roomsList {
+  clear: both;
+  margin-top: 24px;
+  text-align: center;
+}
+.homeContent .roomsList ul {
+  padding: 0;
+  list-style: none;
+}
+@media screen and (max-width: 725px) {
+  .homeContent .cols2 {
+    border: none;
+    padding: 0;
+  }
+  .homeContent .cols2 .col {
+    width: 100%;
+    display: block;
+    border: 1px solid #a9a9be;
+    padding: 12px 0;
+  }
+  .homeContent .cols2 .joinRoom {
+    margin-top: 24px;
+  }
+  .homeContent .roomsList {
+    padding: 12px 0;
+  }
+}
+.newRoomContent {
+  margin-top: 24px;
+}
+.newRoomContent form {
+  padding: 24px;
+}
+.newRoomContent form .textField label {
+  margin-right: 24px;
+}
+.newRoomContent form .field {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #a9a9be;
+}
+.newRoomContent form .field .subField {
+  padding-left: 24px;
+  margin-top: 12px;
+}
+.newRoomContent form .btnField {
+  text-align: center;
+}
+.roomContent .howToJoin {
+  padding: 12px 24px;
+}
+.roomContent .howToJoin .roomId {
+  font-style: italic;
+}
+.roomContent .roomActions {
+  margin-top: 12px;
+  float: right;
+}
+.roomContent .games {
+  margin-top: 12px;
+  float: left;
+}
+.roomContent .roomInfo {
+  float: left;
+  margin-top: 12px;
+}
+.roomContent .qrCodeInfo {
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.roomContent .qrCode {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 8px;
+}
+@media screen and (max-width: 725px) {
+  .roomContent .roomActions {
+    text-align: center;
+    float: none;
+  }
+  .roomContent .games {
+    float: none;
+  }
+  .roomContent .roomInfo {
+    float: none;
+  }
+  .roomContent .qrCodeInfo {
+    display: block;
+  }
+  .roomContent .qrCode {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+  }
+}
+.gameContent .gameMenu .closeGame {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+}
+.gameContent .gameMenu .closeGame .closeBar {
+  width: 30px;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+}
+.gameContent .gameMenu .closeGame .bar1 {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.gameContent .gameMenu .closeGame .bar2 {
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+@media screen and (max-width: 725px) {
+  .gameContent .gameMenu {
+    height: 12px;
+  }
+  .gameContent .gameMenu .closeGame {
+    top: 4px;
+    right: 4px;
+  }
+}
+@font-face {
+  font-family: kanji;
+  src: url(../fonts/Kanji_PA.ttf);
+}
+#tic-tac-toe {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+#tic-tac-toe .title {
+  margin: 30px 0;
+}
+#tic-tac-toe .title img {
+  width: 100%;
+  height: auto;
+}
+#tic-tac-toe table {
+  border-collapse: collapse;
+}
+#tic-tac-toe table,
+#tic-tac-toe td {
+  border: 1px solid black;
+}
+#tic-tac-toe .board {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+#tic-tac-toe .board .line .cell {
+  font-family: kanji;
+  width: 33.33%;
+  font-size: 150px;
+  text-align: center;
+  vertical-align: middle;
+}
+#tic-tac-toe .board .line .cell.X {
+  color: #e74c3a;
+  text-shadow: 5px 0px #17b89a;
+}
+#tic-tac-toe .board .line .cell.O {
+  color: #17b89a;
+  text-shadow: -5px 0px #e74c3a;
+}
+@media screen and (max-width: 725px) {
+  #tic-tac-toe .board .line .cell {
+    font-size: 100px;
+  }
+}

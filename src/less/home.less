@@ -1,0 +1,76 @@
+.homeContent {
+    
+    h1 {
+        margin: 34px;
+        text-align: center;
+    }
+    
+    .cols2 {
+        
+        text-align:center;
+        padding: 24px 12px;
+        text-align: center;
+        
+        .col {
+            width: 50%;
+            margin-right: -3px;
+            display:inline-block;
+            vertical-align:middle;
+        }
+
+        .joinRoom {
+            border-left: 1px solid #a9a9be;
+            h2 {
+                margin-bottom: 12px;
+            }
+            form {
+                .field {
+                    margin-bottom: 12px;
+                    #roomId {
+                        width: 70px;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    .roomsList {
+        clear: both;
+        margin-top: 24px;
+        text-align: center;
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 725px) {
+    .homeContent {
+
+        .cols2 {
+
+            border: none;
+            padding: 0;
+
+            .col {
+                width: 100%;
+                display:block;
+                border: 1px solid #a9a9be;
+                padding: 12px 0;
+            }
+
+            .joinRoom {
+                margin-top: 24px;
+            }
+        }
+
+
+        .roomsList {
+            padding: 12px 0;
+        }
+
+    }
+}

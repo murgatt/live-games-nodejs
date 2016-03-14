@@ -1,0 +1,4 @@
+// npm WARN package.json liveGame@0.1.0 No description
+// npm WARN package.json liveGame@0.1.0 No repository field.
+// npm WARN package.json liveGame@0.1.0 No README data
+// npm WARN package.json liveGame@0.1.0 No license field.

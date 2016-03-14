@@ -1,0 +1,42 @@
+.gameContent {
+    
+    .gameMenu {
+        .closeGame {
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            .closeBar {
+                width: 30px;
+                height: 2px;
+                background-color: black;
+                position: absolute;
+                top: 50%;
+            }
+            .bar1 {
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            .bar2 {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 725px) {
+    
+    .gameContent {
+        .gameMenu {
+            height: 12px;
+            .closeGame {
+                top: 4px;
+                right: 4px;
+            }
+        }   
+    }
+    
+}
