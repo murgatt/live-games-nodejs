@@ -1,10 +1,6 @@
 // Required modules
 var express = require('express.io');
-//var app = express().http().io();
-
-var app = require('express.io')();
-app.http().io();
-
+var app = express().http().io();
 var bodyParser = require('body-parser');
 var url = require('url');
 
@@ -27,7 +23,8 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Start server
-app.listen(8080);
+var port = process.env.PORT || 8080;
+app.listen(port);
 
 // Middleware to check the room before render
 app.param('roomId', function(req, res, next) {
