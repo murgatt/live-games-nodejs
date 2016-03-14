@@ -1,6 +1,6 @@
 {
     "name": "liveGame",
-    "description": "Live Game Node.js app using express.io",
+    "description": "Node.js Live Game app using express.io",
     "repository": "https://github.com/murgatt/liveGame.git",
     "logo": "http://node-js-sample.herokuapp.com/node.svg",
     "keywords": ["node", "express", "static"],
