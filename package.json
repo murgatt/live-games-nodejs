@@ -1,9 +1,9 @@
 {
-    "name": "liveGame",
+    "name": "liveGames",
     "version": "0.1.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/murgatt/liveGame.git"
+        "url": "https://github.com/murgatt/liveGames.git"
     },
     "dependencies": {
         "body-parser": "^1.15.0",

@@ -2,6 +2,7 @@
   font-family: "Museo Sans";
   font-weight: 100;
   font-style: normal;
+  box-sizing: border-box;
 }
 h1,
 h2,
@@ -58,6 +59,24 @@ input[type="submit"]:hover {
   border-bottom: 2px solid #2077b2;
   box-shadow: inset 0 -2px #2077b2;
 }
+.btn:active,
+input[type="submit"]:active {
+  position: relative;
+  top: 1px;
+  border-bottom: none;
+}
+.btn.cancelBtn,
+input[type="submit"].cancelBtn {
+  background-color: #c0392b;
+  border-bottom: 2px solid #b53224;
+  box-shadow: inset 0 -2px #b53224;
+}
+.btn.cancelBtn:hover,
+input[type="submit"].cancelBtn:hover {
+  background-color: #ad2d1f;
+  border-bottom: 2px solid #a42518;
+  box-shadow: inset 0 -2px #a42518;
+}
 input[type="text"] {
   height: 40px;
   font-size: 18px;
@@ -108,6 +127,7 @@ input[type="text"] {
   text-align: center;
 }
 .homeContent .roomsList ul {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
